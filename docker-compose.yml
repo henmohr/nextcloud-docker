@@ -7,10 +7,11 @@ networks:
 
 services:
   app:
-    build:
-      context: .docker/app
-      args:
-        NEXTCLOUD_VERSION: ${NEXTCLOUD_VERSION:-stable-fpm}
+    image: nextcloud:stable-apache
+#    build:
+#      context: .docker/app
+#      args:
+#        NEXTCLOUD_VERSION: ${NEXTCLOUD_VERSION:-stable-fpm}
     volumes:
       - ./volumes/nextcloud:/var/www/html
     restart: unless-stopped
@@ -34,28 +35,25 @@ services:
     networks:
       - internal
 
-  web:
-    build: .docker/web
-    restart: unless-stopped
-    volumes:
-      - ./volumes/nextcloud:/var/www/html:ro
-      - ./volumes/nginx/includes:/etc/nginx/conf.d/includes:rw
-    environment:
-      - VIRTUAL_HOST
-      - LETSENCRYPT_HOST
-      - LETSENCRYPT_EMAIL
-      - TZ
-    depends_on:
-      - app
-    networks:
-      - internal
-      - reverse-proxy
+#  web:
+#    build: .docker/web
+#    restart: unless-stopped
+#    volumes:
+#      - ./volumes/nextcloud:/var/www/html:ro
+#      - ./volumes/nginx/includes:/etc/nginx/conf.d/includes:rw
+#    environment:
+#      - VIRTUAL_HOST
+#      - LETSENCRYPT_HOST
+#      - LETSENCRYPT_EMAIL
+#      - TZ
+#    depends_on:
+#      - app
+#    networks:
+#      - internal
+#      - reverse-proxy
 
   cron:
-    build:
-      context: .docker/app
-      args:
-        NEXTCLOUD_VERSION: ${NEXTCLOUD_VERSION:-stable-fpm}
+    image: nextcloud:stable-apache
     restart: unless-stopped
     environment:
       - TZ
