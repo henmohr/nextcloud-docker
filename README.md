@@ -1,5 +1,7 @@
 Languages avaliable: [pt-BR](docs/README_ptBR.md)
 
+![GitHub Actions](https://github.com/{henmohr}/{nextcloud-docker}/actions/workflows/{publish-ghcr.yml}.yml/badge.svg)
+
 # Nextcloud with SSL and Docker
 
 - [Nextcloud with SSL and Docker](#nextcloud-with-ssl-and-docker)
