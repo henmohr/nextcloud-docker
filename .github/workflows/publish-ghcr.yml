@@ -11,6 +11,6 @@ jobs:
       - name: Build and push the image
         run: |
           docker login --username henmohr --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --tag ghcr.io/henmohr/imagens-nextcloud:30
+          docker build ../docker/app/Dockerfile --tag ghcr.io/henmohr/imagens-nextcloud:30
           docker push ghcr.io/henmohr/imagens-nextcloud:30
 
